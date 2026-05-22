@@ -45,6 +45,14 @@ Hệ thống được thiết kế theo nguyên lý **SOLID** và **Clean Archit
 
 ---
 
+## 🎑 Trọng tâm RBL về Công nghệ & Độ chính xác Y khoa
+
+1. **Nghiên cứu ứng dụng Kiến trúc RAG (Retrieval-Augmented Generation) chống ảo tưởng (Hallucination):** Thay vì để LLM tự do suy luận (dễ dẫn đến sai sót chết người về liều lượng thuốc), hệ thống ứng dụng RAG để "buộc" AI chỉ truy vấn trong vùng dữ liệu an toàn.
+2. **Chuẩn hóa cấu trúc dữ liệu theo tiêu chuẩn Y tế Quốc tế HL7 FHIR:**Nghiên cứu cách ánh xạ (Mapping) các dữ liệu phi cấu trúc (chữ viết từ ảnh chụp đơn thuốc, nhãn thuốc) sau khi qua bộ lọc OCR thành định dạng JSON tuân thủ nghiêm ngặt chuẩn HL7 FHIR.
+3. **Hệ thống đối chiếu tương tác tự động dựa trên mã phân loại ATC (Anatomical Therapeutic Chemical):**Xây dựng thuật toán quét và đối chiếu chéo tự động. Khi người dùng quét một đơn thuốc mới, hệ thống tự động bóc tách mã ATC của các hoạt chất và đối chiếu với "Tủ thuốc số" hiện tại của người dùng để tính toán ma trận rủi ro tương tác thuốc (Drug-Drug Interactions).
+
+---
+
 ## ⚖️ Tính pháp lý & Bảo mật (Compliance & Security)
 
 Dự án cam kết tuân thủ chặt chẽ các quy định về dữ liệu y tế:
