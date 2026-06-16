@@ -73,6 +73,7 @@ Dự án cam kết tuân thủ chặt chẽ các quy định về dữ liệu y 
 ---
 
 - link Jira https://khuongphan275.atlassian.net/jira/software/projects/SCRUM/boards/1
+- link overleaf: https://www.overleaf.com/read/vqzrsnnmnmxg#108017
 
 ## 📦 Cài đặt (Installation for Devs)
 
