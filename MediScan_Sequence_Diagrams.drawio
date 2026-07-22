@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-07-10T07:23:00.000Z" agent="MediScan AI" version="24.0.0" type="device">
+  <diagram name="II-1 Scan Prescription" id="scan-prescription">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;Figure II-1: Sequence Diagram for Scan Prescription Use Case&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="400" y="10" width="500" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Participants (Lifelines) -->
+        <mxCell id="p1" value="Patient/User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="120" height="1050" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p2" value="Mobile App" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="220" y="60" width="120" height="1050" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p3" value="Backend API&#xa;(Spring Boot)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="420" y="60" width="120" height="1050" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p4" value="OCR Service&#xa;(Python)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="620" y="60" width="120" height="1050" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p5" value="NLP/RAG&#xa;Engine" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="820" y="60" width="120" height="1050" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p6" value="Drug Interaction DB&#xa;(Neo4j/DrugBank)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="60" width="140" height="1050" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p7" value="Medical Record DB&#xa;(MySQL)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="60" width="130" height="1050" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p8" value="Notification Hub" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="60" width="120" height="1050" as="geometry"/>
+        </mxCell>
+
+        <!-- Messages -->
+        <!-- 1. Patient -> Mobile App: Capture/upload prescription image -->
+        <mxCell id="m1" value="1: Capture/upload prescription image" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p1" target="p2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="140" as="sourcePoint"/>
+            <mxPoint x="280" y="140" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="180" y="140"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 2. Mobile App -> Backend API: Submit prescription image -->
+        <mxCell id="m2" value="2: Submit prescription image&#xa;POST /api/v1/prescriptions/upload" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p2" target="p3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="180" as="sourcePoint"/>
+            <mxPoint x="480" y="180" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="380" y="180"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 3. Backend API -> OCR Service: Request OCR processing -->
+        <mxCell id="m3" value="3: Request OCR processing" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p3" target="p4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="220" as="sourcePoint"/>
+            <mxPoint x="680" y="220" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="580" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 4. OCR self-call: Image preprocessing -->
+        <mxCell id="m4" value="4: Image preprocessing" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="685" y="260" as="sourcePoint"/>
+            <mxPoint x="740" y="260" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="740" y="250"/>
+              <mxPoint x="740" y="280"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4b" value="" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="280" as="sourcePoint"/>
+            <mxPoint x="685" y="280" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 5. OCR self-call: Handwriting recognition -->
+        <mxCell id="m5" value="5: Handwriting recognition (Transformer)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="685" y="310" as="sourcePoint"/>
+            <mxPoint x="740" y="310" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="740" y="300"/>
+              <mxPoint x="740" y="330"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5b" value="" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="330" as="sourcePoint"/>
+            <mxPoint x="685" y="330" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 6. OCR -> NLP: Extract medication names, dosages -->
+        <mxCell id="m6" value="6: Extract medication names, dosages..." style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p4" target="p5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="360" as="sourcePoint"/>
+            <mxPoint x="880" y="360" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="780" y="360"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 7. NLP self-call: Normalize medication data -->
+        <mxCell id="m7" value="7: Normalize medication data&#xa;(Map to HL7 FHIR JSON)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="400" as="sourcePoint"/>
+            <mxPoint x="940" y="400" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="940" y="390"/>
+              <mxPoint x="940" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m7b" value="" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="940" y="420" as="sourcePoint"/>
+            <mxPoint x="885" y="420" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 8. NLP -> Neo4j: Lookup ATC codes and drug interactions -->
+        <mxCell id="m8" value="8: Lookup ATC codes and drug interactions" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p5" target="p6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="880" y="450" as="sourcePoint"/>
+            <mxPoint x="1090" y="450" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="980" y="450"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 9. Neo4j -> NLP: Return interaction/risk list -->
+        <mxCell id="m9" value="9: Return interaction/risk list" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p6" target="p5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1090" y="490" as="sourcePoint"/>
+            <mxPoint x="880" y="490" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="980" y="490"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 10. NLP -> Backend: Return DDI alerts -->
+        <mxCell id="m10" value="10: Return DDI alerts" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p5" target="p3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="880" y="520" as="sourcePoint"/>
+            <mxPoint x="480" y="520" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="680" y="520"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 11. Backend -> Mobile App: Return OCR results + DDI alerts -->
+        <mxCell id="m11" value="11: Return OCR results + DDI alerts" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p3" target="p2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="560" as="sourcePoint"/>
+            <mxPoint x="280" y="560" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="380" y="560"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ALT Fragment: Severe Interaction -->
+        <mxCell id="alt1" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;strokeColor=#FF0000;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="590" width="350" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="alt1_label" value="[Severe Interaction detected]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="595" width="180" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- 12. Mobile App self-call: Display severe alert -->
+        <mxCell id="m12" value="12: Display severe alert 🔴" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="285" y="630" as="sourcePoint"/>
+            <mxPoint x="340" y="630" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="340" y="620"/>
+              <mxPoint x="340" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m12b" value="" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="650" as="sourcePoint"/>
+            <mxPoint x="285" y="650" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 13. Mobile App -> Patient: Request confirmation -->
+        <mxCell id="m13" value="13: Request confirmation before saving" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p2" target="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="680" as="sourcePoint"/>
+            <mxPoint x="100" y="680" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="180" y="680"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 14. Patient -> Mobile App: Confirm saving -->
+        <mxCell id="m14" value="14: Confirm saving record" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p1" target="p2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="720" as="sourcePoint"/>
+            <mxPoint x="280" y="720" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="180" y="720"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Dashed line separator for else -->
+        <mxCell id="alt_else" value="" style="html=1;verticalAlign=bottom;endArrow=none;dashed=1;strokeColor=#FF0000;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="30" y="740" as="sourcePoint"/>
+            <mxPoint x="380" y="740" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="alt_else_label" value="[No severe interaction detected]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#009900;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="742" width="200" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- 15. Display safe status -->
+        <mxCell id="m15" value="15: Display safe/cautionary status 🟢🟡" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="285" y="760" as="sourcePoint"/>
+            <mxPoint x="340" y="760" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 16. Mobile App -> Backend: Save prescription -->
+        <mxCell id="m16" value="16: Save prescription" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p2" target="p3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="810" as="sourcePoint"/>
+            <mxPoint x="480" y="810" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="380" y="810"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 17. Backend -> MySQL: Save digitized prescription -->
+        <mxCell id="m17" value="17: Save digitized prescription record" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p3" target="p7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="850" as="sourcePoint"/>
+            <mxPoint x="1285" y="850" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="880" y="850"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 18. MySQL -> Backend: Record saved -->
+        <mxCell id="m18" value="18: Record saved successfully" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p7" target="p3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1285" y="890" as="sourcePoint"/>
+            <mxPoint x="480" y="890" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="880" y="890"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 19. Backend -> Notification Hub: Create reminder -->
+        <mxCell id="m19" value="19: Create medication reminder schedule" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p3" target="p8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="930" as="sourcePoint"/>
+            <mxPoint x="1470" y="930" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="980" y="930"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 20. Notification Hub -> Backend: Confirm -->
+        <mxCell id="m20" value="20: Confirm reminder schedule" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p8" target="p3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1470" y="960" as="sourcePoint"/>
+            <mxPoint x="480" y="960" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="980" y="960"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 21. Backend -> Mobile App: Return final results -->
+        <mxCell id="m21" value="21: Return final results" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p3" target="p2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="1000" as="sourcePoint"/>
+            <mxPoint x="280" y="1000" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="380" y="1000"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 22. Mobile App -> Patient: Display results -->
+        <mxCell id="m22" value="22: Display digitized prescription, alerts, and reminders" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;" edge="1" parent="1" source="p2" target="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="1040" as="sourcePoint"/>
+            <mxPoint x="100" y="1040" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="180" y="1040"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="II-2 User Registration" id="user-registration">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="r_title" value="&lt;b&gt;Figure II-2: Sequence Diagram for User Registration Use Case&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="250" y="10" width="450" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Participants -->
+        <mxCell id="r_p1" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="100" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_p2" value="Mobile App" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="280" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_p3" value="Backend API&#xa;(Spring Boot)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="520" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_p4" value="MySQL DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="760" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="r_m1" value="1: Enter email, password, confirm password" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="140" as="sourcePoint"/>
+            <mxPoint x="340" y="140" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m2" value="2: Validate input (format, password match)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="345" y="180" as="sourcePoint"/>
+            <mxPoint x="395" y="180" as="targetPoint"/>
+            <Array as="points"><mxPoint x="395" y="170"/><mxPoint x="395" y="200"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ALT: Validation -->
+        <mxCell id="r_alt1" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="210" width="370" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_alt1_l" value="[Validation failed]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="100" y="215" width="120" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_m3" value="3: Display validation error" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="260" as="sourcePoint"/>
+            <mxPoint x="110" y="260" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_alt1_else" value="" style="endArrow=none;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="290" as="sourcePoint"/>
+            <mxPoint x="420" y="290" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r_alt1_else_l" value="[Validation passed]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#009900;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="292" width="130" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_m4" value="4: POST /auth/register { email, password }" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="360" as="sourcePoint"/>
+            <mxPoint x="580" y="360" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m5" value="5: Check if email exists" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="400" as="sourcePoint"/>
+            <mxPoint x="820" y="400" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m6" value="6: Return result" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="430" as="sourcePoint"/>
+            <mxPoint x="580" y="430" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ALT: Email exists -->
+        <mxCell id="r_alt2" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="450" width="850" height="300" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_alt2_l" value="[Email already exists]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="100" y="455" width="140" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_m7" value="7: Return 409 Conflict" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="500" as="sourcePoint"/>
+            <mxPoint x="340" y="500" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m8" value="8: Display &quot;Email đã tồn tại&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="530" as="sourcePoint"/>
+            <mxPoint x="110" y="530" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_alt2_else" value="" style="endArrow=none;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="560" as="sourcePoint"/>
+            <mxPoint x="900" y="560" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r_alt2_else_l" value="[Email available]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#009900;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="562" width="110" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_m9" value="9: Hash password (BCrypt)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="585" y="600" as="sourcePoint"/>
+            <mxPoint x="640" y="600" as="targetPoint"/>
+            <Array as="points"><mxPoint x="640" y="590"/><mxPoint x="640" y="620"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m10" value="10: INSERT into USERS (role=PATIENT)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="640" as="sourcePoint"/>
+            <mxPoint x="820" y="640" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m11" value="11: Return user_id" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="670" as="sourcePoint"/>
+            <mxPoint x="580" y="670" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m12" value="12: INSERT into USER_PROFILES" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="700" as="sourcePoint"/>
+            <mxPoint x="820" y="700" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m13" value="13: Return 201 Created { user_id, email, role }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="730" as="sourcePoint"/>
+            <mxPoint x="340" y="730" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r_m14" value="14: Display &quot;Đăng ký thành công&quot; → Redirect to Login" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="750" as="sourcePoint"/>
+            <mxPoint x="110" y="750" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="II-3 User Login" id="user-login">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="l_title" value="&lt;b&gt;Figure II-3: Sequence Diagram for User Login Use Case&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="10" width="400" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l_p1" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="100" height="650" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l_p2" value="Mobile App" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="280" y="60" width="120" height="650" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l_p3" value="Backend API&#xa;(Spring Boot)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="520" y="60" width="120" height="650" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l_p4" value="MySQL DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="760" y="60" width="120" height="650" as="geometry"/>
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="l_m1" value="1: Enter email, password" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="140" as="sourcePoint"/>
+            <mxPoint x="340" y="140" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m2" value="2: POST /auth/login { email, password }" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="180" as="sourcePoint"/>
+            <mxPoint x="580" y="180" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m3" value="3: SELECT user by email" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="220" as="sourcePoint"/>
+            <mxPoint x="820" y="220" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m4" value="4: Return user record (or null)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="250" as="sourcePoint"/>
+            <mxPoint x="580" y="250" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ALT -->
+        <mxCell id="l_alt1" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="280" width="850" height="370" as="geometry"/>
+        </mxCell>
+        <mxCell id="l_alt1_l" value="[User not found OR password mismatch]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="100" y="285" width="250" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l_m5" value="5: Increment failed_attempts" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="585" y="330" as="sourcePoint"/>
+            <mxPoint x="640" y="330" as="targetPoint"/>
+            <Array as="points"><mxPoint x="640" y="320"/><mxPoint x="640" y="350"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- OPT: Lock account -->
+        <mxCell id="l_opt" value="opt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;strokeColor=#FF6600;" vertex="1" parent="1">
+          <mxGeometry x="500" y="360" width="400" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="l_opt_l" value="[failed_attempts &gt;= 5]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF6600;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="550" y="362" width="140" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l_m6" value="6: Lock account temporarily" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="400" as="sourcePoint"/>
+            <mxPoint x="820" y="400" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m7" value="7: Return 401 Unauthorized" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="450" as="sourcePoint"/>
+            <mxPoint x="340" y="450" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m8" value="8: Display &quot;Sai email hoặc mật khẩu&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="480" as="sourcePoint"/>
+            <mxPoint x="110" y="480" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ELSE -->
+        <mxCell id="l_else" value="" style="endArrow=none;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="510" as="sourcePoint"/>
+            <mxPoint x="900" y="510" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l_else_l" value="[Credentials valid]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#009900;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="512" width="120" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l_m9" value="9: Verify password hash (BCrypt)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="585" y="550" as="sourcePoint"/>
+            <mxPoint x="640" y="550" as="targetPoint"/>
+            <Array as="points"><mxPoint x="640" y="540"/><mxPoint x="640" y="570"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m10" value="10: Generate JWT (Access + Refresh Token)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="585" y="590" as="sourcePoint"/>
+            <mxPoint x="640" y="590" as="targetPoint"/>
+            <Array as="points"><mxPoint x="640" y="580"/><mxPoint x="640" y="610"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m11" value="11: Return 200 { access_token, refresh_token, expires_in }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="630" as="sourcePoint"/>
+            <mxPoint x="340" y="630" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m12" value="12: Store JWT in secure storage" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="345" y="660" as="sourcePoint"/>
+            <mxPoint x="395" y="660" as="targetPoint"/>
+            <Array as="points"><mxPoint x="395" y="650"/><mxPoint x="395" y="680"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="l_m13" value="13: Redirect to Home Dashboard" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="700" as="sourcePoint"/>
+            <mxPoint x="110" y="700" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="II-4 View Health Log" id="view-health-log">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="h_title" value="&lt;b&gt;Figure II-4: Sequence Diagram for View Health Log Use Case&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="260" y="10" width="430" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h_p1" value="Patient" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="100" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h_p2" value="Mobile App" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="280" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h_p3" value="Backend API&#xa;(Spring Boot)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="520" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h_p4" value="MySQL DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="760" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="h_m1" value="1: Open &quot;Sổ y bạ&quot; screen" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="140" as="sourcePoint"/>
+            <mxPoint x="340" y="140" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m2" value="2: GET /prescriptions?page=1&amp;sort=created_at,desc&#xa;(Header: Bearer JWT)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="180" as="sourcePoint"/>
+            <mxPoint x="580" y="180" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m3" value="3: Validate JWT token" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="585" y="220" as="sourcePoint"/>
+            <mxPoint x="640" y="220" as="targetPoint"/>
+            <Array as="points"><mxPoint x="640" y="210"/><mxPoint x="640" y="240"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ALT: Token -->
+        <mxCell id="h_alt1" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="260" width="850" height="450" as="geometry"/>
+        </mxCell>
+        <mxCell id="h_alt1_l" value="[Token invalid / expired]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="100" y="265" width="150" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h_m4" value="4: Return 401 Unauthorized" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="310" as="sourcePoint"/>
+            <mxPoint x="340" y="310" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m5" value="5: Redirect to Login" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="340" as="sourcePoint"/>
+            <mxPoint x="110" y="340" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_else" value="" style="endArrow=none;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="370" as="sourcePoint"/>
+            <mxPoint x="900" y="370" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h_else_l" value="[Token valid]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#009900;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="372" width="80" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h_m6" value="6: SELECT prescriptions WHERE patient_id = ?&#xa;ORDER BY created_at DESC" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="420" as="sourcePoint"/>
+            <mxPoint x="820" y="420" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m7" value="7: Return prescription list" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="460" as="sourcePoint"/>
+            <mxPoint x="580" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m8" value="8: Return 200 { prescriptions[], pagination }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="500" as="sourcePoint"/>
+            <mxPoint x="340" y="500" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m9" value="9: Display prescription timeline" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="530" as="sourcePoint"/>
+            <mxPoint x="110" y="530" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- OPT: View detail -->
+        <mxCell id="h_opt" value="opt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;strokeColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="60" y="560" width="830" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="h_opt_l" value="[User taps on a prescription]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#0066CC;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="110" y="562" width="180" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h_m10" value="10: Tap prescription item" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="600" as="sourcePoint"/>
+            <mxPoint x="340" y="600" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m11" value="11: GET /prescriptions/{id}" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="630" as="sourcePoint"/>
+            <mxPoint x="580" y="630" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m12" value="12: SELECT prescription + items + DDI results" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="650" as="sourcePoint"/>
+            <mxPoint x="820" y="650" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m13" value="13: Return full details" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="670" as="sourcePoint"/>
+            <mxPoint x="580" y="670" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m14" value="14: Return 200 { prescription, items[], ddi_results[] }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="690" as="sourcePoint"/>
+            <mxPoint x="340" y="690" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="h_m15" value="15: Display detail: ảnh gốc + thuốc bóc tách + DDI alerts" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="710" as="sourcePoint"/>
+            <mxPoint x="110" y="710" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="II-5 Manage Reminders" id="manage-reminders">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="rm_title" value="&lt;b&gt;Figure II-5: Sequence Diagram for Manage Medication Reminders Use Case&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="10" width="530" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rm_p1" value="Patient" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="100" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rm_p2" value="Mobile App" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="220" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rm_p3" value="Backend API&#xa;(Spring Boot)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="440" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rm_p4" value="MySQL DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="660" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rm_p5" value="Notification Hub" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="880" y="60" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <!-- View Reminders -->
+        <mxCell id="rm_m1" value="1: Open &quot;Lịch nhắc thuốc&quot; screen" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="140" as="sourcePoint"/>
+            <mxPoint x="280" y="140" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m2" value="2: GET /reminders (Bearer JWT)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="180" as="sourcePoint"/>
+            <mxPoint x="500" y="180" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m3" value="3: SELECT reminders WHERE patient_id = ?" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="210" as="sourcePoint"/>
+            <mxPoint x="720" y="210" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m4" value="4: Return reminder list" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="240" as="sourcePoint"/>
+            <mxPoint x="500" y="240" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m5" value="5: Return 200 { reminders[] }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="270" as="sourcePoint"/>
+            <mxPoint x="280" y="270" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m6" value="6: Display reminder list" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="300" as="sourcePoint"/>
+            <mxPoint x="90" y="300" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- OPT: Toggle -->
+        <mxCell id="rm_opt1" value="opt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;strokeColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="30" y="330" width="990" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="rm_opt1_l" value="[Toggle ON/OFF]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#0066CC;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="332" width="110" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rm_m7" value="7: Toggle reminder status" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="370" as="sourcePoint"/>
+            <mxPoint x="280" y="370" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m8" value="8: PATCH /reminders/{id}/toggle" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="400" as="sourcePoint"/>
+            <mxPoint x="500" y="400" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m9" value="9: UPDATE status = ACTIVE/INACTIVE" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="430" as="sourcePoint"/>
+            <mxPoint x="720" y="430" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m10" value="10: Update notification schedule" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="460" as="sourcePoint"/>
+            <mxPoint x="940" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m11" value="11: Confirm schedule updated" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="940" y="480" as="sourcePoint"/>
+            <mxPoint x="500" y="480" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m12" value="12: Return 200 { updated reminder }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="500" as="sourcePoint"/>
+            <mxPoint x="280" y="500" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- OPT: Edit time -->
+        <mxCell id="rm_opt2" value="opt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;strokeColor=#FF6600;" vertex="1" parent="1">
+          <mxGeometry x="30" y="530" width="990" height="190" as="geometry"/>
+        </mxCell>
+        <mxCell id="rm_opt2_l" value="[Edit reminder time]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF6600;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="532" width="130" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rm_m14" value="14: Change reminder time" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="570" as="sourcePoint"/>
+            <mxPoint x="280" y="570" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m15" value="15: PUT /reminders/{id} { cron_expression }" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="600" as="sourcePoint"/>
+            <mxPoint x="500" y="600" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m16" value="16: UPDATE cron_expression" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="630" as="sourcePoint"/>
+            <mxPoint x="720" y="630" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m17" value="17: Reschedule notification" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="660" as="sourcePoint"/>
+            <mxPoint x="940" y="660" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m18" value="18: Return 200" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="690" as="sourcePoint"/>
+            <mxPoint x="280" y="690" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rm_m19" value="19: Display &quot;Cập nhật thành công&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="710" as="sourcePoint"/>
+            <mxPoint x="90" y="710" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="II-6 AI Consulting RAG" id="ai-consulting-rag">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="ai_title" value="&lt;b&gt;Figure II-6: Sequence Diagram for AI Consulting (RAG) Use Case&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="250" y="10" width="460" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ai_p1" value="Patient" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="100" height="620" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ai_p2" value="Mobile App" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="220" y="60" width="120" height="620" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ai_p3" value="Backend API&#xa;(Spring Boot)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="440" y="60" width="120" height="620" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ai_p4" value="RAG Engine&#xa;(Python)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="660" y="60" width="120" height="620" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ai_p5" value="Neo4j&#xa;(DrugBank)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;rotatable=0;size=40;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="880" y="60" width="120" height="620" as="geometry"/>
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="ai_m1" value="1: Enter health question (chat input)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="140" as="sourcePoint"/>
+            <mxPoint x="280" y="140" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m2" value="2: POST /consult { question } (Bearer JWT)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="180" as="sourcePoint"/>
+            <mxPoint x="500" y="180" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m3" value="3: Forward question to RAG service" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="220" as="sourcePoint"/>
+            <mxPoint x="720" y="220" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m4" value="4: Parse question → Extract drug/symptom keywords" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="725" y="260" as="sourcePoint"/>
+            <mxPoint x="780" y="260" as="targetPoint"/>
+            <Array as="points"><mxPoint x="780" y="250"/><mxPoint x="780" y="280"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m5" value="5: RETRIEVE: Query relevant drug data + interactions" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="310" as="sourcePoint"/>
+            <mxPoint x="940" y="310" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m6" value="6: Return verified medical data" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="940" y="350" as="sourcePoint"/>
+            <mxPoint x="720" y="350" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m7" value="7: GENERATE: LLM generates answer&#xa;ONLY from retrieved data (Anti-hallucination)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="725" y="390" as="sourcePoint"/>
+            <mxPoint x="780" y="390" as="targetPoint"/>
+            <Array as="points"><mxPoint x="780" y="380"/><mxPoint x="780" y="410"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ALT -->
+        <mxCell id="ai_alt" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=40;height=20;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=5;fillColor=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="430" width="990" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="ai_alt_l" value="[No relevant data found]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="435" width="150" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ai_m8" value="8: Return &quot;Không đủ thông tin&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="480" as="sourcePoint"/>
+            <mxPoint x="500" y="480" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m9" value="9: Return fallback response" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="500" as="sourcePoint"/>
+            <mxPoint x="280" y="500" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m10" value="10: Display &quot;Vui lòng liên hệ bác sĩ&quot; + disclaimer" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="520" as="sourcePoint"/>
+            <mxPoint x="90" y="520" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_else" value="" style="endArrow=none;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="30" y="550" as="sourcePoint"/>
+            <mxPoint x="1020" y="550" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ai_else_l" value="[Data found - Generate answer]" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#009900;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="552" width="190" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ai_m11" value="11: Return answer + references" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="590" as="sourcePoint"/>
+            <mxPoint x="500" y="590" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m12" value="12: Return 200 { answer, references[] }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="620" as="sourcePoint"/>
+            <mxPoint x="280" y="620" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ai_m13" value="13: Display AI answer + nguồn tham chiếu + disclaimer" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="650" as="sourcePoint"/>
+            <mxPoint x="90" y="650" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+</mxfile>
